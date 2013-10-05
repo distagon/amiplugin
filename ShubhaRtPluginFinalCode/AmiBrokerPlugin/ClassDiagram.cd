@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AmiBrokerPlugin.Plugin">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAABAAAAAAAAAAAABCABAAAAA=</HashCode>
+      <FileName>Plugin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AmiBrokerPlugin.PluginNotification">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAEEQAEAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PluginNotification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AmiBrokerPlugin.StockInfo">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACSgBABAQiAQEsAQAAKoplTDSAcIAIAiAAAgAABYmAA=</HashCode>
+      <FileName>StockInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="AmiBrokerPlugin.PluginInfo">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAABAAACAAAAAAAAAAAAQAAAAAAABAAQAAEEAAAAA=</HashCode>
+      <FileName>PluginInfo.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="AmiBrokerPlugin.COLORREF">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAEAAQA=</HashCode>
+      <FileName>ColorRef.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="AmiBrokerPlugin.SiteInterface">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>SiteInterface.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="AmiBrokerPlugin.RecentInfo">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICQQCAIEAAhAIAARCghAAgQCgAgCwEACAAATEAAAgEA=</HashCode>
+      <FileName>RecentInfo.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="AmiBrokerPlugin.Quotation">
+    <Position X="7.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQCAIACAAgAAAAAAAAgAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Quotation.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="AmiBrokerPlugin.GQEContext">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>GQEContext.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="AmiBrokerPlugin.PluginStatus">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAACAAAAAAAAAAgAAAAAAIAAAEAAAAAA=</HashCode>
+      <FileName>PluginStatus.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="AmiBrokerPlugin.PluginType">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAkAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAABA=</HashCode>
+      <FileName>PluginType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
