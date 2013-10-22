@@ -24,6 +24,9 @@ using Microsoft.Win32;
 using System.Text;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using System.Management;
+using System.Linq;
+
 
 
 namespace AmiBrokerPlugin
@@ -54,6 +57,7 @@ namespace AmiBrokerPlugin
         {
             InitializeComponent();
         }
+
         public void RtdataRecall()
         {
 
@@ -536,15 +540,52 @@ namespace AmiBrokerPlugin
                 var paidornot = regKey.GetValue("sp");
 
                 DateTime reg = Convert.ToDateTime(registerdate);
-                reg = reg.AddDays(3654);
+                reg = reg.AddDays(2);
 
                 if (paidornot.ToString() == "Key for xp")
                 {
                     if (reg < DateTime.Today.Date)
                     {
-                        MessageBox.Show("Trial version expired please contact to sale@shubhalabha.in ");
-                        this.Close();
-                        return;
+                        Uri a = new System.Uri("http://besttester.com/lic/licforami.txt");
+
+                        // webBrowser1.Source = a;
+                        string credentials = "liccheck:lic123!@#";
+                        HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(a);
+                        request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(credentials)));
+                        request.PreAuthenticate = true;
+                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                        StreamReader reader = new StreamReader(response.GetResponseStream());
+
+                        ////////////////////////////////////////////
+
+                        string[] serverdata = reader.ReadToEnd().Split(',');
+                        string[] serverdata1 = null;
+                        int flagforuserpresentonserver = 0;
+                        for (int i = 0; i < serverdata.Count(); i++)
+                        {
+                            serverdata1 = serverdata[i].Split(' ');
+                            DateTime dateonserver = Convert.ToDateTime(serverdata1[1]);
+
+                            ManagementObject dsk1 = new ManagementObject(@"win32_logicaldisk.deviceid=""c:""");
+                            dsk1.Get();
+                            string id1 = dsk1["VolumeSerialNumber"].ToString();
+                            if (id1 == serverdata1[0])
+                            {
+                                flagforuserpresentonserver = 1;
+                                if (dateonserver < DateTime.Today.Date)
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Trial version expired please contact to sales@shubhalabha.in ");
+
+                                }
+                            }
+                        }
+
+                        if (flagforuserpresentonserver == 0)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Trial version expired please contact to sales@shubhalabha.in ");
+                        }
+
                     }
                     else
                     {
@@ -670,9 +711,7 @@ namespace AmiBrokerPlugin
 
 
         }
-        
-      
-
+     
         private void Righclick_Load(object sender, EventArgs e)
         {
             

@@ -384,8 +384,6 @@ namespace AmiBrokerPlugin
             this.Close();
         }
 
-        
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://shubhalabha.in/contact-us/");
@@ -401,44 +399,49 @@ namespace AmiBrokerPlugin
 
 
 
-           
-            string terminalname = ConfigurationManager.AppSettings["terminalname"];
+
+            string preset = ConfigurationManager.AppSettings["preset"];
             Process[] processes = null;
             Type type;
 
+
+            if(preset=="NEST")
+            {
            
-                
-                    //try
-                    //{
-                    //    type = Type.GetTypeFromProgID("nest.scriprtd");
-
-                    //    m_server = (IRtdServer)Activator.CreateInstance(type);
-                    //    processes = Process.GetProcessesByName("NestTrader");
-
-
-                    //}
-                    //catch
-                    //{
-
-                        
-                           
-                   
-                    //}
             try
             {
-                type = Type.GetTypeFromProgID("now.scriprtd");
+                type = Type.GetTypeFromProgID("nest.scriprtd");
 
                 m_server = (IRtdServer)Activator.CreateInstance(type);
-                processes = Process.GetProcessesByName("NOW");
+                processes = Process.GetProcessesByName("NestTrader");
+
 
             }
-                    catch
-                    {
-                        MessageBox.Show(" Please start Teminal  as Run as Administrator and again start Realtime combo");
-                        return;
-                    }
-               
-                   
+            catch
+            {
+
+
+
+
+            }
+            }
+            if (preset == "NOW")
+            {
+                try
+                {
+                    type = Type.GetTypeFromProgID("now.scriprtd");
+
+                    m_server = (IRtdServer)Activator.CreateInstance(type);
+                    processes = Process.GetProcessesByName("NOW");
+
+                }
+                catch
+                {
+                    MessageBox.Show(" Please start Teminal  as Run as Administrator and again start Realtime combo");
+                    return;
+                }
+
+            }
                  IntPtr abcd = new IntPtr();
                 IntPtr abcd1 = new IntPtr();
                 IntPtr windowHandle = new IntPtr();
@@ -492,7 +495,6 @@ namespace AmiBrokerPlugin
 
                 finalobject = f.Children[0];
                 string s1 = finalobject.Description;
-                MessageBox.Show(s1 );
 
                 int flag = 0;
                 string[] checkterminalcol = s1.Split(',');
@@ -508,26 +510,7 @@ namespace AmiBrokerPlugin
                 {
                 }
 
-                //if (!marketwathrequiredfield.Contains("LTT"))
-                //{
-                //    flag = 1;
-                //   MessageBox.Show("LTT Not Present into market watch add LTT ");
-
-                //}
-                //if (!marketwathrequiredfield.Contains("LTP"))
-                //{
-                //    flag = 1;
-
-                //}
-                //if (!marketwathrequiredfield.Contains("Volume Traded Today"))
-                //{
-                //    flag = 1;
-
-                //}
-                //if (!marketwathrequiredfield.Contains("Open Interest"))
-                //{
-                //    flag = 1;
-                //}
+              
                 if (!marketwathrequiredfield.Contains("Exchange"))
                 {
                     flag = 1;
@@ -559,6 +542,7 @@ namespace AmiBrokerPlugin
 
 
 
+                dataGridView2.Columns.Clear();
 
 
                 dataGridView2.Columns.Add("Symbol", "Symbol");
@@ -583,7 +567,6 @@ namespace AmiBrokerPlugin
                                  {
 
                                      exchage = checkterminalcol[j].Split(':');
-                                     MessageBox.Show(exchage[1]);
                                      if (exchage[1].Contains("NSE"))
                                      {
                                          exchagename = "nse_cm";
@@ -728,28 +711,6 @@ namespace AmiBrokerPlugin
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow row = (DataGridViewRow)dataGridView2.Rows[0].Clone();
-
-            DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[0];
-            if (chk.Selected == false)
-            {
-                chk.Selected = true;
-            }
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            int i = dataGridView2.CurrentRow.Index;
-            dataGridView2.Rows.RemoveAt(i);
-            dataGridView2.Refresh();
-
-        }
+      
     }
 }

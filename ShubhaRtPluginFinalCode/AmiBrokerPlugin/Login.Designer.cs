@@ -48,7 +48,6 @@
             this.register.Text = "Register";
             this.register.UseVisualStyleBackColor = true;
             this.register.Visible = false;
-            this.register.Click += new System.EventHandler(this.register_Click);
             // 
             // login_btn
             // 
@@ -59,7 +58,6 @@
             this.login_btn.Text = "Login";
             this.login_btn.UseVisualStyleBackColor = true;
             this.login_btn.Visible = false;
-            this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
             // 
             // close_btn
             // 
@@ -123,7 +121,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Location = new System.Drawing.Point(120, 28);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 22);
+            this.label3.Size = new System.Drawing.Size(150, 22);
             this.label3.TabIndex = 7;
             this.label3.Text = "Shubha RT plugin";
             this.label3.Visible = false;
@@ -133,6 +131,7 @@
             this.lead.Location = new System.Drawing.Point(0, 0);
             this.lead.MinimumSize = new System.Drawing.Size(20, 20);
             this.lead.Name = "lead";
+            this.lead.ScriptErrorsSuppressed = true;
             this.lead.Size = new System.Drawing.Size(694, 232);
             this.lead.TabIndex = 8;
             this.lead.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowser1_Navigated);
