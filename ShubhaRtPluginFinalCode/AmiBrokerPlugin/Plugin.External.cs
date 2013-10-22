@@ -361,21 +361,33 @@ namespace AmiBrokerPlugin
             {
                 var registerdate = regKey.GetValue("sd");
                 var paidornot = regKey.GetValue("sp");
+                var wizard = regKey.GetValue("Wizard");
                
            
             string chktmp = ConfigurationManager.AppSettings["ApplicationId"];
+             //if user is using first time 
+            if (wizard != null && wizard.ToString() == "done")
+            {
                 //if user delete register entry then show login window agian 
-            //if (chktmp == "2" && registerdate != null && paidornot!=null )
-            //{
-                ShubhaPlugin f = new ShubhaPlugin();
-                f.ShowDialog();
-            //}
-            //else
-            //{
-            //    Login f = new Login();
-            //    f.ShowDialog();
-            //}
+                if (registerdate != null && paidornot != null)
+                {
+                    ShubhaPlugin f = new ShubhaPlugin();
+                    f.ShowDialog();
+                }
+                else
+                {
+                    Login f = new Login();
+                    f.ShowDialog();
+                }
+
             }
+            else
+            {
+                Wizard w = new Wizard();
+                w.ShowDialog();
+            }
+            }
+            
             catch
             {
 

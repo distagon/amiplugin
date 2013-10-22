@@ -30,20 +30,14 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label23 = new System.Windows.Forms.Label();
-            this.exchang = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.symbolname = new System.Windows.Forms.TextBox();
-            this.select_all = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Movesymboltort = new System.Windows.Forms.Button();
-            this.Remove_Rtsymbol = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.close = new System.Windows.Forms.Button();
             this.Save_Config = new System.Windows.Forms.Button();
@@ -92,11 +86,10 @@
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.mappingsymbol_txt = new System.Windows.Forms.TextBox();
-            this.mappingsymbol = new System.Windows.Forms.ListBox();
-            this.label26 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -122,23 +115,15 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(38)))), ((int)(((byte)(100)))));
-            this.tabPage1.Controls.Add(this.label26);
-            this.tabPage1.Controls.Add(this.mappingsymbol);
-            this.tabPage1.Controls.Add(this.mappingsymbol_txt);
+            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.dataGridView2);
             this.tabPage1.Controls.Add(this.label25);
             this.tabPage1.Controls.Add(this.label24);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.label23);
-            this.tabPage1.Controls.Add(this.exchang);
-            this.tabPage1.Controls.Add(this.label13);
-            this.tabPage1.Controls.Add(this.symbolname);
-            this.tabPage1.Controls.Add(this.select_all);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.Movesymboltort);
-            this.tabPage1.Controls.Add(this.Remove_Rtsymbol);
-            this.tabPage1.Controls.Add(this.listBox1);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.close);
             this.tabPage1.Controls.Add(this.Save_Config);
@@ -151,6 +136,24 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Config";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(244, 233);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(161, 23);
+            this.button3.TabIndex = 46;
+            this.button3.Text = "Save symbol in File";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(77, 33);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(509, 184);
+            this.dataGridView2.TabIndex = 7;
+            // 
             // label25
             // 
             this.label25.AutoSize = true;
@@ -158,7 +161,7 @@
             this.label25.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label25.Location = new System.Drawing.Point(379, 146);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(95, 17);
+            this.label25.Size = new System.Drawing.Size(94, 17);
             this.label25.TabIndex = 42;
             this.label25.Text = "Symbol for RT";
             // 
@@ -175,7 +178,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(425, 79);
+            this.button2.Location = new System.Drawing.Point(425, 233);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(161, 23);
             this.button2.TabIndex = 40;
@@ -185,61 +188,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(425, 42);
+            this.button1.Location = new System.Drawing.Point(77, 233);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(161, 23);
             this.button1.TabIndex = 39;
-            this.button1.Text = "Add symbol to RT";
+            this.button1.Text = "Import Symbol";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label23.Location = new System.Drawing.Point(128, 82);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(70, 17);
-            this.label23.TabIndex = 38;
-            this.label23.Text = "Exchange ";
-            // 
-            // exchang
-            // 
-            this.exchang.FormattingEnabled = true;
-            this.exchang.Location = new System.Drawing.Point(227, 81);
-            this.exchang.Name = "exchang";
-            this.exchang.Size = new System.Drawing.Size(171, 21);
-            this.exchang.TabIndex = 37;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label13.Location = new System.Drawing.Point(80, 47);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(121, 17);
-            this.label13.TabIndex = 36;
-            this.label13.Text = "Enter symbol name";
-            // 
-            // symbolname
-            // 
-            this.symbolname.Location = new System.Drawing.Point(227, 44);
-            this.symbolname.Name = "symbolname";
-            this.symbolname.Size = new System.Drawing.Size(171, 20);
-            this.symbolname.TabIndex = 30;
-            // 
-            // select_all
-            // 
-            this.select_all.Location = new System.Drawing.Point(203, 388);
-            this.select_all.Name = "select_all";
-            this.select_all.Size = new System.Drawing.Size(98, 23);
-            this.select_all.TabIndex = 29;
-            this.select_all.Text = "Select All Symbol";
-            this.select_all.UseVisualStyleBackColor = true;
-            this.select_all.Visible = false;
-            this.select_all.Click += new System.EventHandler(this.select_all_Click);
             // 
             // label2
             // 
@@ -263,35 +218,6 @@
             this.label1.Text = "Please delete all files in selected download folder and restart Amibroker to star" +
                 "t fresh selection\" If used for large data, ";
             // 
-            // Movesymboltort
-            // 
-            this.Movesymboltort.Location = new System.Drawing.Point(317, 236);
-            this.Movesymboltort.Name = "Movesymboltort";
-            this.Movesymboltort.Size = new System.Drawing.Size(46, 48);
-            this.Movesymboltort.TabIndex = 26;
-            this.Movesymboltort.Text = ">>";
-            this.Movesymboltort.UseVisualStyleBackColor = true;
-            this.Movesymboltort.Visible = false;
-            this.Movesymboltort.Click += new System.EventHandler(this.Movesymboltort_Click);
-            // 
-            // Remove_Rtsymbol
-            // 
-            this.Remove_Rtsymbol.Location = new System.Drawing.Point(266, 390);
-            this.Remove_Rtsymbol.Name = "Remove_Rtsymbol";
-            this.Remove_Rtsymbol.Size = new System.Drawing.Size(97, 23);
-            this.Remove_Rtsymbol.TabIndex = 17;
-            this.Remove_Rtsymbol.Text = "Remove from rt";
-            this.Remove_Rtsymbol.UseVisualStyleBackColor = true;
-            this.Remove_Rtsymbol.Click += new System.EventHandler(this.Remove_Rtsymbol_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(382, 168);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(218, 173);
-            this.listBox1.TabIndex = 16;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -299,7 +225,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(83, 173);
+            this.dataGridView1.Location = new System.Drawing.Point(77, 42);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(218, 175);
@@ -308,9 +234,9 @@
             // 
             // close
             // 
-            this.close.Location = new System.Drawing.Point(451, 388);
+            this.close.Location = new System.Drawing.Point(425, 271);
             this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(97, 23);
+            this.close.Size = new System.Drawing.Size(161, 23);
             this.close.TabIndex = 10;
             this.close.Text = "Close";
             this.close.UseVisualStyleBackColor = true;
@@ -318,9 +244,9 @@
             // 
             // Save_Config
             // 
-            this.Save_Config.Location = new System.Drawing.Point(77, 388);
+            this.Save_Config.Location = new System.Drawing.Point(244, 271);
             this.Save_Config.Name = "Save_Config";
-            this.Save_Config.Size = new System.Drawing.Size(97, 23);
+            this.Save_Config.Size = new System.Drawing.Size(160, 23);
             this.Save_Config.TabIndex = 9;
             this.Save_Config.Text = "Save";
             this.Save_Config.UseVisualStyleBackColor = true;
@@ -619,7 +545,7 @@
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label8.Location = new System.Drawing.Point(12, 71);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 17);
+            this.label8.Size = new System.Drawing.Size(55, 17);
             this.label8.TabIndex = 57;
             this.label8.Text = "Volume:";
             // 
@@ -802,32 +728,15 @@
             this.linkLabel2.Text = "Read License ";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
-            // mappingsymbol_txt
+            // button4
             // 
-            this.mappingsymbol_txt.Location = new System.Drawing.Point(227, 117);
-            this.mappingsymbol_txt.Name = "mappingsymbol_txt";
-            this.mappingsymbol_txt.Size = new System.Drawing.Size(171, 20);
-            this.mappingsymbol_txt.TabIndex = 43;
-            // 
-            // mappingsymbol
-            // 
-            this.mappingsymbol.FormattingEnabled = true;
-            this.mappingsymbol.Location = new System.Drawing.Point(407, 208);
-            this.mappingsymbol.Name = "mappingsymbol";
-            this.mappingsymbol.Size = new System.Drawing.Size(120, 95);
-            this.mappingsymbol.TabIndex = 44;
-            this.mappingsymbol.Visible = false;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label26.Location = new System.Drawing.Point(23, 117);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(178, 17);
-            this.label26.TabIndex = 45;
-            this.label26.Text = "Enter mapping symbol name ";
+            this.button4.Location = new System.Drawing.Point(77, 271);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(161, 23);
+            this.button4.TabIndex = 47;
+            this.button4.Text = "Remove symbol";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // ShubhaPlugin
             // 
@@ -842,6 +751,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -868,10 +778,6 @@
         private System.Windows.Forms.Button path;
         private System.Windows.Forms.TextBox txtTargetFolder;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button Remove_Rtsymbol;
-        private System.Windows.Forms.Button Movesymboltort;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox preset;
@@ -910,24 +816,20 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button select_all;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.ComboBox exchang;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox symbolname;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox mappingsymbol_txt;
-        private System.Windows.Forms.ListBox mappingsymbol;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button4;
 
     }
 }

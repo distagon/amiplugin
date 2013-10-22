@@ -54,6 +54,7 @@ namespace AmiBrokerPlugin
          string symbolnametostore = "";
         List<string> yahoortdata = new List<String>();
         IRtdServer m_server;
+        
         System.Timers.Timer myTimer;
         public ShubhaPlugin()
         {
@@ -104,12 +105,6 @@ namespace AmiBrokerPlugin
             }
            Sec.SelectedIndex = 5;
 
-           exchang.Items.Add("nse_cm");
-           exchang.Items.Add("nse_fo");
-           exchang.Items.Add("cde_fo");
-           exchang.Items.Add("mcx_fo");
-
-           exchang.SelectedIndex = 1;
             
 
             preset.Items.Add("NEST");
@@ -207,35 +202,7 @@ namespace AmiBrokerPlugin
             {
             }
 
-            try
-            {
-                using (var reader = new StreamReader(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt"))
-                {
-                    string line = null;
-                    // System.IO.File.WriteAllText("C:\\data\\csvfiledata.txt", reader.ReadLine());
-
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        listBox1.Items.Add(line);
-                    }
-                }
-
-
-
-                using (var reader = new StreamReader(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt"))
-                {
-                    string line = null;
-                    // System.IO.File.WriteAllText("C:\\data\\csvfiledata.txt", reader.ReadLine());
-
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        mappingsymbol .Items.Add(line);
-                    }
-                }
-            }
-            catch
-            {
-            }
+           
             
             //get symbol list from amibroker database 
             Type abType = Type.GetTypeFromProgID("Broker.Application");
@@ -290,36 +257,7 @@ namespace AmiBrokerPlugin
 
         private void Remove_Rtsymbol_Click(object sender, EventArgs e)
         {
-            //removes symbol from ShubhaRtsymbollist.txt file 
-            try
-            {
-                int count = listBox1.SelectedIndex;
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
-
-                System.IO.File.Delete(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt");
-
-                for (int i = 0; i < listBox1.Items.Count; i++)
-                {
-                    using (var writer = new StreamWriter(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt", true))
-                        writer.WriteLine(listBox1.Items[i].ToString());
-                }
-
-
-               
-                mappingsymbol.Items.RemoveAt(count);
-               
-                System.IO.File.Delete(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt");
-
-                for (int i = 0; i < mappingsymbol.Items.Count; i++)
-                {
-                    using (var writer = new StreamWriter(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt", true))
-                        writer.WriteLine(mappingsymbol.Items[i].ToString());
-                }
-                
-            }
-            catch
-            {
-            }
+            
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -329,35 +267,7 @@ namespace AmiBrokerPlugin
 
         private void Movesymboltort_Click(object sender, EventArgs e)
         {
-            //moves symbol to ShubhaRtsymbollist.txt
-            for (int i = 0; i < listBox1.Items.Count; i++)
-            {
-                if (symbolnametostore == listBox1.Items[i].ToString())
-                {
-                    MessageBox.Show("Already present");
-                    return;
-                }
-            }
-
-            for (int i = 0; i < mappingsymbol .Items.Count; i++)
-            {
-                if (mappingsymbol_txt.Text  == mappingsymbol.Items[i].ToString())
-                {
-                    MessageBox.Show("Already present");
-                    return;
-                }
-            }
-
-            if (symbolnametostore != "")
-            {
-                listBox1.Items.Add(symbolnametostore);
-                using (var writer = new StreamWriter(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt", true))
-                    writer.WriteLine(symbolnametostore);
-
-                listBox1.Items.Add(mappingsymbol.Text );
-                using (var writer = new StreamWriter(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt", true))
-                    writer.WriteLine(mappingsymbol.Text);
-            }
+           
 
         }
 
@@ -474,27 +384,7 @@ namespace AmiBrokerPlugin
             this.Close();
         }
 
-        private void select_all_Click(object sender, EventArgs e)
-        {
-            //select all symbol and store it into ShubhaRtsymbollist.txt
-            listBox1.Items.Clear();
-            try
-            {
-                File.Delete(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt");
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    listBox1.Items.Add(dataGridView1.Rows[i].Cells[0].Value.ToString());
-                    using (var writer = new StreamWriter(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt", true))
-                        writer.WriteLine(dataGridView1.Rows[i].Cells[0].Value.ToString());
-            }
-
-                MessageBox.Show("All symbols added successfully");
-            }
-            catch
-            {
-
-            }
-        }
+        
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -506,35 +396,47 @@ namespace AmiBrokerPlugin
             System.Diagnostics.Process.Start("http://shubhalabha.in/disclaimer/license/");
         }
 
-
         public void getsymbol()
         {
 
 
 
-            //dataGrid3.Items.Add(new DataItem { Column0 = "abcd", Column1 = "dasdasdas" });
-            //dataGrid3.Items.Add(new DataItem { Column0 = "abcasdsasdd", Column1 = "das1111111111111dasdas" });
+           
             string terminalname = ConfigurationManager.AppSettings["terminalname"];
             Process[] processes = null;
             Type type;
 
            
                 
-                    try
-                    {
-                        type = Type.GetTypeFromProgID("nest.scriprtd");
+                    //try
+                    //{
+                    //    type = Type.GetTypeFromProgID("nest.scriprtd");
 
-                        m_server = (IRtdServer)Activator.CreateInstance(type);
-                        processes = Process.GetProcessesByName("NestTrader");
+                    //    m_server = (IRtdServer)Activator.CreateInstance(type);
+                    //    processes = Process.GetProcessesByName("NestTrader");
 
 
-                    }
+                    //}
+                    //catch
+                    //{
+
+                        
+                           
+                   
+                    //}
+            try
+            {
+                type = Type.GetTypeFromProgID("now.scriprtd");
+
+                m_server = (IRtdServer)Activator.CreateInstance(type);
+                processes = Process.GetProcessesByName("NOW");
+
+            }
                     catch
                     {
-                    MessageBox.Show(" Please start Nest as Run as Administrator and again start Realtime combo");
+                        MessageBox.Show(" Please start Teminal  as Run as Administrator and again start Realtime combo");
                         return;
                     }
-               
                
                    
                  IntPtr abcd = new IntPtr();
@@ -544,7 +446,7 @@ namespace AmiBrokerPlugin
 
 
                 List<Thread> processtostartback = new List<Thread>();
-                SystemAccessibleObject sao, f;
+                SystemAccessibleObject sao, f, finalobject;
 
                 foreach (Process p in processes)
                 {
@@ -585,114 +487,191 @@ namespace AmiBrokerPlugin
 
 
 
-                listBox1.Items.Clear();
-                for (int i = 0; i < 5;i++ )
+            //////////////////////////////
+            //checking nest fileds 
+
+                finalobject = f.Children[0];
+                string s1 = finalobject.Description;
+                MessageBox.Show(s1 );
+
+                int flag = 0;
+                string[] checkterminalcol = s1.Split(',');
+                string marketwathrequiredfield = "";
+                try
                 {
-                    listBox1.Items.Add(f.Children[i].Name .ToString());
+                    for (int i = 0; i < 20; i++)
+                    {
+                        marketwathrequiredfield = marketwathrequiredfield + checkterminalcol[i].ToString();
+                    }
+                }
+                catch
+                {
                 }
 
+                //if (!marketwathrequiredfield.Contains("LTT"))
+                //{
+                //    flag = 1;
+                //   MessageBox.Show("LTT Not Present into market watch add LTT ");
+
+                //}
+                //if (!marketwathrequiredfield.Contains("LTP"))
+                //{
+                //    flag = 1;
+
+                //}
+                //if (!marketwathrequiredfield.Contains("Volume Traded Today"))
+                //{
+                //    flag = 1;
+
+                //}
+                //if (!marketwathrequiredfield.Contains("Open Interest"))
+                //{
+                //    flag = 1;
+                //}
+                if (!marketwathrequiredfield.Contains("Exchange"))
+                {
+                    flag = 1;
+                }
+                if (flag == 1)
+                {
+                   MessageBox.Show("Some required fileds are missing in market watch please add that fileds and try shubha real time combo again \n Thank you  ");
+                   return;
+                }
+
+
+
+
+
+
+
+            ///////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                dataGridView2.Columns.Add("Symbol", "Symbol");
+                dataGridView2.Columns.Add("Mapping Symbol", "Mapping Symbol");
+                dataGridView2.Columns[0].Width = 200;
+                dataGridView2.Columns[1].Width = 200;
+
+                try
+                {
+                    for (int i = 0; i < 20; i++)
+                    {
+                         s1 = f.Children[i].Description;
+                         string []exchage = null ;
+                         string exchagename = "";
+
+                         checkterminalcol = s1.Split(',');
+                         try
+                         {
+                             for (int j = 0; j < 20; j++)
+                             {
+                                 if (checkterminalcol[j].Contains("Exchange"))
+                                 {
+
+                                     exchage = checkterminalcol[j].Split(':');
+                                     MessageBox.Show(exchage[1]);
+                                     if (exchage[1].Contains("NSE"))
+                                     {
+                                         exchagename = "nse_cm";
+
+                                     }
+                                     else if (exchage[1].Contains("NFO"))
+                                     {
+                                         exchagename = "nse_fo";
+
+                                     }
+                                     else if (exchage[1].Contains("MCX"))
+                                     {
+                                         exchagename = "mcx_fo";
+
+                                     }
+                                     else if (exchage[1].Contains("CDE"))
+                                     {
+                                         exchagename = "cde_fo";
+
+                                     }
+                                 }
+                             }
+                         }
+                         catch
+                         {
+                         }
+                         if (exchagename!="")
+                        {
+                        DataGridViewRow row = (DataGridViewRow)dataGridView2.Rows[0].Clone();
+                        row.Cells[0].Value =exchagename+"|"+ f.Children[i].Name;
+                        row.Cells[1].Value = f.Children[i].Name;
+
+                        dataGridView2.Rows.Add(row);
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
 
             
            
 
         }
 
+        //import symbol from nest
         private void button1_Click(object sender, EventArgs e)
         {
             getsymbol();
-            
-            
-            if(symbolname.Text=="")
-            {
-                MessageBox.Show("Please Enter symbol name ");
-                return;
-            }
-            if (mappingsymbol_txt .Text == "")
-            {
-                MessageBox.Show("Please Enter mappingsymbol  name ");
-                return;
-            }
-            listBox1.Items.Add(exchang.SelectedItem + "|" + symbolname.Text);
-            mappingsymbol.Items.Add(mappingsymbol_txt.Text );
+             
 
+        }
+
+        //Add symbol into amibroker 
+        private void button2_Click(object sender, EventArgs e)
+        {
             try
             {
+                string chktmp = ConfigurationManager.AppSettings["txtTargetFolderforami"];
+                Type abType = Type.GetTypeFromProgID("Broker.Application");
+                object abApp = Activator.CreateInstance(abType);
+                object abDoc = abType.InvokeMember("ActiveDocument",
+                BindingFlags.GetProperty, null, abApp, null);
+                List<string> symbolname = new List<String>();
 
-                System.IO.File.Delete(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt");
-
-                for (int i = 0; i < listBox1.Items.Count; i++)
+                object ticker1 = abType.InvokeMember("Stocks", BindingFlags.GetProperty, null,
+                          abApp, null);
+                using (var reader = new StreamReader(chktmp + "\\ShubhaRtmappingsymbollist.txt"))
                 {
-                    using (var writer = new StreamWriter(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt", true))
-                        writer.WriteLine(listBox1.Items[i].ToString());
+                    string line = null;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        abType.InvokeMember("Add", BindingFlags.InvokeMethod | BindingFlags.Public, null,
+                                ticker1, new object[1] { line });
+                    }
+
                 }
-
-
-                System.IO.File.Delete(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt");
-
-                for (int i = 0; i < mappingsymbol.Items.Count; i++)
-                {
-                    using (var writer = new StreamWriter(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt", true))
-                        writer.WriteLine(mappingsymbol.Items[i].ToString());
-                }
-               
-
-
-
-           //     string symbolnametostore = exchang.SelectedItem + "|" + symbolname.Text;
-           //     Type abType = Type.GetTypeFromProgID("Broker.Application");
-           //     object abApp = Activator.CreateInstance(abType);
-           //     object abDoc = abType.InvokeMember("ActiveDocument",
-           //     BindingFlags.GetProperty, null, abApp, null);
-
-           //     object ticker1 = abType.InvokeMember("Stocks", BindingFlags.GetProperty, null,
-           //               abApp, null);
-
-
-           //abType.InvokeMember("Add", BindingFlags.InvokeMethod | BindingFlags.Public, null,
-           //               ticker1, new object[1] { symbolnametostore });
-
-               
             }
             catch
             {
             }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
             /////////////////////////////////////
-            Type abType = Type.GetTypeFromProgID("Broker.Application");
-            object abApp = Activator.CreateInstance(abType);
-            object abDoc = abType.InvokeMember("ActiveDocument",
-            BindingFlags.GetProperty, null, abApp, null);
-            List<string> symbolname = new List<String>();
-
-            object ticker1 = abType.InvokeMember("Stocks", BindingFlags.GetProperty, null,
-                      abApp, null);
-
-            for (int i = 0; i < listBox1.Items.Count;i++ )
-            {
-                string[] wordsdata1 = listBox1.Items[i].ToString().Split('|');
-
-                string symbolnametostore = listBox1.Items[i].ToString();
-              // MessageBox.Show( symbolnametostore);
-               // symbolname.Add(symbolnametostore);
-                abType.InvokeMember("Add", BindingFlags.InvokeMethod | BindingFlags.Public, null,
-                              ticker1, new object[1] { mappingsymbol.Items[i].ToString()});
-               
-            }
+           
+           
            
             MessageBox.Show("All symbol added successfully  ");
-            //int lengthforsymbol = 0;
-            // for (int i = 0; i < symbolname.Count-1;i++ )
-            //{
-
-            // lengthforsymbol = symbolname[i].Length-1;
-            // string sysmbol1 = symbolname[i].Substring(lengthforsymbol,;
-            // MessageBox.Show(sysmbol1.Substring(0,lengthforsymbol-1));
-            //abType.InvokeMember("Add", BindingFlags.InvokeMethod | BindingFlags.Public, null,
-            //                  ticker1, new object[1] { symbolname[i] });
-            // }
+           
         }
 
         private void preset_SelectedIndexChanged(object sender, EventArgs e)
@@ -716,6 +695,61 @@ namespace AmiBrokerPlugin
 
 
             }
+        }
+
+
+        //save data in txt files 
+        private void button3_Click(object sender, EventArgs e)
+        {
+              System.IO.File.Delete(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt");
+
+            System.IO.File.Delete(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt");
+           
+            for (int i = 0; i < dataGridView2.Rows.Count - 1; i++)
+            {
+                using (var writer = new StreamWriter(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt", true))
+                    writer.WriteLine(dataGridView2.Rows[i].Cells[0].Value);
+            }
+
+            for (int i = 0; i < dataGridView2.Rows.Count - 1; i++)
+            {
+                
+
+
+                    using (var writer = new StreamWriter(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt", true))
+                        writer.WriteLine(dataGridView2.Rows[i].Cells[1].Value);
+              
+               
+            }
+
+
+
+            MessageBox.Show("File save  ");
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = (DataGridViewRow)dataGridView2.Rows[0].Clone();
+
+            DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[0];
+            if (chk.Selected == false)
+            {
+                chk.Selected = true;
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            int i = dataGridView2.CurrentRow.Index;
+            dataGridView2.Rows.RemoveAt(i);
+            dataGridView2.Refresh();
+
         }
     }
 }
