@@ -241,7 +241,16 @@ namespace AmiBrokerPlugin
                 RegistryKey regKey = Registry.CurrentUser;
                 regKey = regKey.CreateSubKey(@"windows-data\");
                 regKey.SetValue("Wizard", "done");
+                if (nest.Checked == true)
+                {
+                    regKey.SetValue("terminal", "NEST");
 
+                }
+                else if(now.Checked==true )
+                {
+                    regKey.SetValue("terminal", "NOW");
+
+                }
                 var registerdate = regKey.GetValue("sd");
                 var paidornot = regKey.GetValue("sp");
                 this.Hide();

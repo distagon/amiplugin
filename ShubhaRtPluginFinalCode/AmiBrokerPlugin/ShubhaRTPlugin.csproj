@@ -273,6 +273,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Notice.txt" />
+    <None Include="Resources\Shubhalabha.png" />
+    <None Include="Resources\Shubhalabha1.png" />
     <Content Include="shubhalabha.ico" />
     <None Include="Resources\Shubhalabha logo2.jpg" />
     <None Include="Resources\Shubhalabha logo1.jpg" />

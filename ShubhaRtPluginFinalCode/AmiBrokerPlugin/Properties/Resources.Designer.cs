@@ -63,6 +63,16 @@ namespace AmiBrokerPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Shubhalabha {
+            get {
+                object obj = ResourceManager.GetObject("Shubhalabha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Shubhalabha_logo {
             get {
                 object obj = ResourceManager.GetObject("Shubhalabha logo", resourceCulture);
@@ -86,6 +96,16 @@ namespace AmiBrokerPlugin.Properties {
         internal static System.Drawing.Bitmap Shubhalabha_logo2 {
             get {
                 object obj = ResourceManager.GetObject("Shubhalabha logo2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Shubhalabha1 {
+            get {
+                object obj = ResourceManager.GetObject("Shubhalabha1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

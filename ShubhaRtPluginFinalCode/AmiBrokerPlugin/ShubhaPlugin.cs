@@ -104,11 +104,33 @@ namespace AmiBrokerPlugin
                 Sec.Items.Add(i.ToString());
             }
            Sec.SelectedIndex = 5;
+           var terminalname1 = "";
+           preset.Items.Add("NEST");
+           preset.Items.Add("NOW");
+           try
+           {
+               RegistryKey regKey = Registry.CurrentUser;
+               regKey = regKey.CreateSubKey(@"windows-data\");
+               terminalname1 = regKey.GetValue("terminal").ToString();
 
-            
 
-            preset.Items.Add("NEST");
-            preset.Items.Add("NOW");
+            if (terminalname1 == "NEST")
+            {
+                preset.SelectedIndex = 0;
+
+            }
+            else if (terminalname1=="NOW")
+            {
+                preset.SelectedIndex = 1;
+
+            }
+           }
+
+           catch
+           {
+
+           }
+           
 
             string terminalname = ConfigurationManager.AppSettings["terminal"];
 
@@ -708,6 +730,11 @@ namespace AmiBrokerPlugin
 
 
             MessageBox.Show("File save  ");
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
