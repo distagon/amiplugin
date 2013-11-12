@@ -35,13 +35,10 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.close = new System.Windows.Forms.Button();
-            this.Save_Config = new System.Windows.Forms.Button();
             this.path = new System.Windows.Forms.Button();
             this.txtTargetFolder = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -81,15 +78,15 @@
             this.terminal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.label23 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -125,13 +122,10 @@
             this.tabPage1.Controls.Add(this.dataGridView2);
             this.tabPage1.Controls.Add(this.label25);
             this.tabPage1.Controls.Add(this.label24);
-            this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.close);
-            this.tabPage1.Controls.Add(this.Save_Config);
             this.tabPage1.Controls.Add(this.path);
             this.tabPage1.Controls.Add(this.txtTargetFolder);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
@@ -143,18 +137,19 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(77, 292);
+            this.button4.Location = new System.Drawing.Point(425, 251);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(161, 25);
             this.button4.TabIndex = 47;
             this.button4.Text = "Remove symbol";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(244, 251);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(161, 25);
+            this.button3.Size = new System.Drawing.Size(175, 25);
             this.button3.TabIndex = 46;
             this.button3.Text = "Save symbol in File";
             this.button3.UseVisualStyleBackColor = true;
@@ -189,16 +184,6 @@
             this.label24.Size = new System.Drawing.Size(132, 17);
             this.label24.TabIndex = 41;
             this.label24.Text = "Symbol in amibroker ";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(425, 251);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(161, 25);
-            this.button2.TabIndex = 40;
-            this.button2.Text = "Add all RT symbol to Ami";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -245,26 +230,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(218, 188);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // close
-            // 
-            this.close.Location = new System.Drawing.Point(425, 292);
-            this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(161, 25);
-            this.close.TabIndex = 10;
-            this.close.Text = "Close";
-            this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.close_Click);
-            // 
-            // Save_Config
-            // 
-            this.Save_Config.Location = new System.Drawing.Point(244, 292);
-            this.Save_Config.Name = "Save_Config";
-            this.Save_Config.Size = new System.Drawing.Size(160, 25);
-            this.Save_Config.TabIndex = 9;
-            this.Save_Config.Text = "Save";
-            this.Save_Config.UseVisualStyleBackColor = true;
-            this.Save_Config.Click += new System.EventHandler(this.Save_Config_Click);
             // 
             // path
             // 
@@ -678,6 +643,19 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Support";
             // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel3.ForeColor = System.Drawing.Color.Black;
+            this.linkLabel3.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel3.Location = new System.Drawing.Point(489, 13);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(47, 15);
+            this.linkLabel3.TabIndex = 5;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "license.";
+            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
@@ -738,6 +716,15 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "License";
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.ForeColor = System.Drawing.Color.White;
+            this.label23.Location = new System.Drawing.Point(134, 64);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(0, 15);
+            this.label23.TabIndex = 3;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -761,28 +748,6 @@
             this.linkLabel2.Text = "Read License ";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel3.ForeColor = System.Drawing.Color.Black;
-            this.linkLabel3.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel3.Location = new System.Drawing.Point(489, 13);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(47, 15);
-            this.linkLabel3.TabIndex = 5;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "license.";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(134, 64);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(0, 15);
-            this.label23.TabIndex = 3;
-            // 
             // ShubhaPlugin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -793,6 +758,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ShubhaPlugin";
             this.Text = "Shubha RT Plugin";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ShubhaPlugin_FormClosed);
             this.Load += new System.EventHandler(this.ShubhaPlugin_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -819,8 +785,6 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button close;
-        private System.Windows.Forms.Button Save_Config;
         private System.Windows.Forms.Button path;
         private System.Windows.Forms.TextBox txtTargetFolder;
         private System.Windows.Forms.TabPage tabPage2;
@@ -868,7 +832,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.DataGridView dataGridView2;

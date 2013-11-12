@@ -576,7 +576,8 @@ namespace AmiBrokerPlugin
                                 if (dateonserver < DateTime.Today.Date)
                                 {
                                     System.Windows.Forms.MessageBox.Show("Trial version expired please contact to sales@shubhalabha.in ");
-
+                                    this.Close();
+                                    return;
                                 }
                             }
                         }
@@ -584,6 +585,8 @@ namespace AmiBrokerPlugin
                         if (flagforuserpresentonserver == 0)
                         {
                             System.Windows.Forms.MessageBox.Show("Trial version expired please contact to sales@shubhalabha.in ");
+                            this.Close();
+                            return;
                         }
 
                     }
@@ -653,7 +656,7 @@ namespace AmiBrokerPlugin
                 }
                 catch
                 {
-                    System.Windows.Forms.MessageBox.Show("Please start ........" + terminalname);
+                    System.Windows.Forms.MessageBox.Show("Please start your terminal ");
                     return;
                 }
                 ///////////////////////////////////////////////////////////

@@ -54,7 +54,8 @@ namespace AmiBrokerPlugin
          string symbolnametostore = "";
         List<string> yahoortdata = new List<String>();
         IRtdServer m_server;
-        
+        List<string> tradingsymbolname = new List<string>();
+        List<string> mappingsymbol = new List<string>();
         System.Timers.Timer myTimer;
         public ShubhaPlugin()
         {
@@ -252,6 +253,70 @@ namespace AmiBrokerPlugin
             catch
             {
             }
+
+
+            try
+            {
+                using (var reader = new StreamReader(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt"))
+                {
+                    string line = null;
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        tradingsymbolname.Add(line);
+                       
+                    }
+                }
+            }
+            catch
+            {
+            }
+            try
+            {
+                using (var reader = new StreamReader(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt"))
+
+                {
+                    string line = null;
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        mappingsymbol .Add(line);
+
+                    }
+                }
+            }
+            catch
+            {
+            }
+
+
+            dataGridView2.Columns.Clear();
+
+
+            dataGridView2.Columns.Add("Symbol", "Symbol");
+            dataGridView2.Columns.Add("Mapping Symbol", "Mapping Symbol");
+            dataGridView2.Columns[0].Width = 200;
+            dataGridView2.Columns[1].Width = 200;
+
+            try
+            {
+
+                for (int i = 0; i < tradingsymbolname.Count; i++)
+                {
+
+                    DataGridViewRow row = (DataGridViewRow)dataGridView2.Rows[0].Clone();
+                    row.Cells[0].Value = tradingsymbolname[i];
+                    row.Cells[1].Value = mappingsymbol[i];
+                    dataGridView2.Rows.Add(row);
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
          }
      
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -264,17 +329,7 @@ namespace AmiBrokerPlugin
 
         private void Save_Config_Click(object sender, EventArgs e)
         {
-            //save configaration of config file 
-            config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-            config.AppSettings.Settings.Remove("txtTargetFolderforami");
-
-            config.AppSettings.Settings.Add("txtTargetFolderforami", txtTargetFolder.Text.ToString());
-            config.Save(ConfigurationSaveMode.Full);
-            ConfigurationManager.RefreshSection("appSettings");
-
-
-            MessageBox.Show("File save successfully");
+            
         }
 
         private void Remove_Rtsymbol_Click(object sender, EventArgs e)
@@ -282,11 +337,7 @@ namespace AmiBrokerPlugin
             
         }
 
-        private void close_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+       
         private void Movesymboltort_Click(object sender, EventArgs e)
         {
            
@@ -426,7 +477,9 @@ namespace AmiBrokerPlugin
             Process[] processes = null;
             Type type;
 
-
+            MessageBox.Show(preset);
+           
+           
             if(preset=="NEST")
             {
            
@@ -443,7 +496,8 @@ namespace AmiBrokerPlugin
             {
 
 
-
+                MessageBox.Show(" Please start Teminal  as Run as Administrator");
+                return;
 
             }
             }
@@ -459,7 +513,7 @@ namespace AmiBrokerPlugin
                 }
                 catch
                 {
-                    MessageBox.Show(" Please start Teminal  as Run as Administrator and again start Realtime combo");
+                    MessageBox.Show(" Please start Teminal  as Run as Administrator");
                     return;
                 }
 
@@ -564,17 +618,17 @@ namespace AmiBrokerPlugin
 
 
 
-                dataGridView2.Columns.Clear();
+                //dataGridView2.Columns.Clear();
 
 
-                dataGridView2.Columns.Add("Symbol", "Symbol");
-                dataGridView2.Columns.Add("Mapping Symbol", "Mapping Symbol");
-                dataGridView2.Columns[0].Width = 200;
-                dataGridView2.Columns[1].Width = 200;
+                //dataGridView2.Columns.Add("Symbol", "Symbol");
+                //dataGridView2.Columns.Add("Mapping Symbol", "Mapping Symbol");
+                //dataGridView2.Columns[0].Width = 200;
+                //dataGridView2.Columns[1].Width = 200;
 
                 try
                 {
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 50; i++)
                     {
                          s1 = f.Children[i].Description;
                          string []exchage = null ;
@@ -615,13 +669,38 @@ namespace AmiBrokerPlugin
                          catch
                          {
                          }
-                         if (exchagename!="")
+                         if (exchagename != "" && f.Children[i].Name != "" && f.Children[i].Name != null )
                         {
+                            int flagforsym = 0;
+                            try
+                            {
+                                //check symbol already present or not 
+                                for (int j = 0; j  < tradingsymbolname.Count-1; j++)
+                                {
+                                    if (tradingsymbolname[j ] == exchagename + "|" + f.Children[i].Name)
+                                   {
+
+                                       flagforsym = 1;
+                                   }
+
+
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+
+                             //add symbol if not present 
+                            if (flagforsym==0)
+                             {
                         DataGridViewRow row = (DataGridViewRow)dataGridView2.Rows[0].Clone();
                         row.Cells[0].Value =exchagename+"|"+ f.Children[i].Name;
                         row.Cells[1].Value = f.Children[i].Name;
 
                         dataGridView2.Rows.Add(row);
+                        flagforsym = 0;
+                             }
                         }
                     }
                 }
@@ -638,46 +717,112 @@ namespace AmiBrokerPlugin
         //import symbol from nest
         private void button1_Click(object sender, EventArgs e)
         {
+          
+            ///////////////// save config
+
+            config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+
+            config.AppSettings.Settings.Remove("terminal");
+
+            config.AppSettings.Settings.Add("terminal", terminal.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            config.AppSettings.Settings.Remove("servername");
+
+            config.AppSettings.Settings.Add("servername", servername.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            config.AppSettings.Settings.Remove("interval");
+            config.AppSettings.Settings.Add("interval", Sec.SelectedItem.ToString());
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            config.AppSettings.Settings.Remove("preset");
+
+            config.AppSettings.Settings.Add("preset", preset.SelectedItem.ToString());
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            config.AppSettings.Settings.Remove("LTT");
+
+            config.AppSettings.Settings.Add("LTT", LTT.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+
+            config.AppSettings.Settings.Remove("LTP");
+
+            config.AppSettings.Settings.Add("LTP", LTP.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+
+            config.AppSettings.Settings.Remove("Volume");
+
+            config.AppSettings.Settings.Add("Volume", Volume.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+
+
+            config.AppSettings.Settings.Remove("Openinterest");
+
+            config.AppSettings.Settings.Add("Openinterest", Openinterest.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+
+            config.AppSettings.Settings.Remove("Open");
+
+            config.AppSettings.Settings.Add("Open", Open.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            config.AppSettings.Settings.Remove("High");
+
+            config.AppSettings.Settings.Add("High", High.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            config.AppSettings.Settings.Remove("Low");
+
+            config.AppSettings.Settings.Add("Low", Low.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            config.AppSettings.Settings.Remove("Ask");
+
+            config.AppSettings.Settings.Add("Ask", Ask.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+
+
+            config.AppSettings.Settings.Remove("Bid");
+
+            config.AppSettings.Settings.Add("Bid", Bid.Text);
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            //////////
+
+
+
+            if(txtTargetFolder.Text=="")
+            {
+                MessageBox.Show("Please select download path ");
+                return;
+            }
             getsymbol();
              
 
         }
 
         //Add symbol into amibroker 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string chktmp = ConfigurationManager.AppSettings["txtTargetFolderforami"];
-                Type abType = Type.GetTypeFromProgID("Broker.Application");
-                object abApp = Activator.CreateInstance(abType);
-                object abDoc = abType.InvokeMember("ActiveDocument",
-                BindingFlags.GetProperty, null, abApp, null);
-                List<string> symbolname = new List<String>();
-
-                object ticker1 = abType.InvokeMember("Stocks", BindingFlags.GetProperty, null,
-                          abApp, null);
-                using (var reader = new StreamReader(chktmp + "\\ShubhaRtmappingsymbollist.txt"))
-                {
-                    string line = null;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        abType.InvokeMember("Add", BindingFlags.InvokeMethod | BindingFlags.Public, null,
-                                ticker1, new object[1] { line });
-                    }
-
-                }
-            }
-            catch
-            {
-            }
-            /////////////////////////////////////
-           
-           
-           
-            MessageBox.Show("All symbol added successfully  ");
-           
-        }
+      
 
         private void preset_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -706,7 +851,19 @@ namespace AmiBrokerPlugin
         //save data in txt files 
         private void button3_Click(object sender, EventArgs e)
         {
-              System.IO.File.Delete(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt");
+            //save configaration of config file 
+            config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            config.AppSettings.Settings.Remove("txtTargetFolderforami");
+
+            config.AppSettings.Settings.Add("txtTargetFolderforami", txtTargetFolder.Text.ToString());
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+
+
+            
+            //save data into file 
+            System.IO.File.Delete(txtTargetFolder.Text + "\\ShubhaRtsymbollist.txt");
 
             System.IO.File.Delete(txtTargetFolder.Text + "\\ShubhaRtmappingsymbollist.txt");
            
@@ -728,14 +885,63 @@ namespace AmiBrokerPlugin
             }
 
 
+            //add all symbols into amibroker 
+            try
+            {
+                string chktmp = ConfigurationManager.AppSettings["txtTargetFolderforami"];
+                Type abType = Type.GetTypeFromProgID("Broker.Application");
+                object abApp = Activator.CreateInstance(abType);
+                object abDoc = abType.InvokeMember("ActiveDocument",
+                BindingFlags.GetProperty, null, abApp, null);
+                List<string> symbolname = new List<String>();
 
-            MessageBox.Show("File save  ");
+                object ticker1 = abType.InvokeMember("Stocks", BindingFlags.GetProperty, null,
+                          abApp, null);
+                using (var reader = new StreamReader(chktmp + "\\ShubhaRtmappingsymbollist.txt"))
+                {
+                    string line = null;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        abType.InvokeMember("Add", BindingFlags.InvokeMethod | BindingFlags.Public, null,
+                                ticker1, new object[1] { line });
+                    }
+
+                }
+            }
+            catch
+            {
+            }
+            /////////////////////////////////////
+
+
+
+           
+
+
+            MessageBox.Show("File save successfully");  
+
 
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ShubhaPlugin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+
+
+            foreach (DataGridViewRow item in this.dataGridView2.SelectedRows)
+            {
+                dataGridView2.Rows.RemoveAt(item.Index);
+            }
         }
 
       
