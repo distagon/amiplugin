@@ -663,8 +663,10 @@ namespace AmiBrokerPlugin
 
 
 
+               
 
                 RtdataRecall();
+               
            
         }
 
@@ -678,6 +680,7 @@ namespace AmiBrokerPlugin
             config.Save(ConfigurationSaveMode.Full);
             ConfigurationManager.RefreshSection("appSettings");
             MessageBox.Show("Server Stop  ");
+           
             this.Close();
         }
         private static void JoinCsvFiles(string[] csvFileNames, string outputDestinationPath)

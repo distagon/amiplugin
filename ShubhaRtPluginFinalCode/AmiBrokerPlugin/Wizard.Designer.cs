@@ -75,6 +75,7 @@
             // Finish
             // 
             this.Finish.BackColor = System.Drawing.Color.Silver;
+            this.Finish.Enabled = false;
             this.Finish.ForeColor = System.Drawing.Color.Black;
             this.Finish.Location = new System.Drawing.Point(201, 336);
             this.Finish.Name = "Finish";

@@ -100,11 +100,21 @@ namespace AmiBrokerPlugin
 
         private void ShubhaPlugin_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 60; i++)
-            {
-                Sec.Items.Add(i.ToString());
-            }
-           Sec.SelectedIndex = 5;
+           
+            int  item = 1;
+            Sec.Items.Add(item.ToString());
+            item = 3;
+            Sec.Items.Add(item.ToString());
+            item = 5;
+            Sec.Items.Add(item.ToString());
+            item = 10;
+            Sec.Items.Add(item.ToString());
+            item = 20;
+            Sec.Items.Add(item.ToString());
+
+
+
+           Sec.SelectedIndex = 2;
            var terminalname1 = "";
            preset.Items.Add("NEST");
            preset.Items.Add("NOW");
@@ -477,7 +487,6 @@ namespace AmiBrokerPlugin
             Process[] processes = null;
             Type type;
 
-            MessageBox.Show(preset);
            
            
             if(preset=="NEST")
@@ -496,8 +505,7 @@ namespace AmiBrokerPlugin
             {
 
 
-                MessageBox.Show(" Please start Teminal  as Run as Administrator");
-                return;
+              
 
             }
             }
@@ -549,7 +557,7 @@ namespace AmiBrokerPlugin
                     string marketwatch = abcd1.ToString();
                     if (marketwatch == "0")
                     {
-                    MessageBox.Show("Nest is not running or Market Watch not present check out and run real time combo again \n     thank you  ");
+                    MessageBox.Show("Nest is not running or Market Watch not present ");
 
                     }
                     sao = SystemAccessibleObject.FromWindow(a, AccessibleObjectID.OBJID_WINDOW);
@@ -593,7 +601,7 @@ namespace AmiBrokerPlugin
                 }
                 if (flag == 1)
                 {
-                   MessageBox.Show("Some required fileds are missing in market watch please add that fileds and try shubha real time combo again \n Thank you  ");
+                   MessageBox.Show("Some required fileds are missing in market watch please add that fileds  ");
                    return;
                 }
 
@@ -685,10 +693,18 @@ namespace AmiBrokerPlugin
 
 
                                 }
+                                foreach (DataGridViewRow row in dataGridView2.Rows)
+                                {
+                                   // MessageBox.Show(row.Cells[0].Value.ToString());
+                                    if (exchagename + "|" + f.Children[i].Name == row.Cells[0].Value.ToString())
+                                    {
+                                        flagforsym = 1;
+                                    }
+                                }
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                              //  MessageBox.Show(ex.Message);
                             }
 
                              //add symbol if not present 
