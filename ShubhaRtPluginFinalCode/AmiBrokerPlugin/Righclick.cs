@@ -348,11 +348,29 @@ namespace AmiBrokerPlugin
         {
             string chktmp = ConfigurationManager.AppSettings["txtTargetFolderforami"];
             string timetorep = "";
+            List<string> mappingsymbolname = new List<string>();
+
+
+            using (var reader1 = new StreamReader(chktmp + "\\ShubhaRtmappingsymbollist.txt"))
+            {
+                string line1 = null;
+                while ((line1 = reader1.ReadLine()) != null)
+                {
+
+                    //  MessageBox.Show(line1);
+
+                    mappingsymbolname.Add(line1);
+                }
+
+
+            }
             try
             {
                 yahoortdata.Clear();
 
+                int countformappingsymbol = 0;
                 int flagfortotaldatacount = 0;
+                int predatacount = 0;
                 using (var reader = new StreamReader(chktmp + "\\ShubhaRtsymbollist.txt"))
                 {
                     string line = null;
@@ -494,8 +512,10 @@ namespace AmiBrokerPlugin
                         {
                             datatostore = datatostore + "," + yahoortdata[filecount];
                         }
-                       
-                        string tempfilepath = chktmp + "\\" + wordsdata[1] + ".csv";                       
+
+                        string tempfilepath = chktmp + "\\" + mappingsymbolname[countformappingsymbol].ToString() + ".csv";
+                        countformappingsymbol++;
+                       // string tempfilepath = chktmp + "\\" + wordsdata[1] + ".csv";                       
                         string[] datacheck = datatostore.Split(',');
                         if (datacheck[1].Length < 8)
                         {

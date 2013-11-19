@@ -212,7 +212,7 @@ namespace AmiBrokerPlugin
                     }
                 if(flag1==0)
                 {
-                    Result.Text = "Please add EXchange Column in terminal";
+                    Result.Text = "Please add Exchange Column in terminal";
 
                 }
                    

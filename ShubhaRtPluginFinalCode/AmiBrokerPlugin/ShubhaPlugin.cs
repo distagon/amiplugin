@@ -504,12 +504,13 @@ namespace AmiBrokerPlugin
             catch
             {
 
-
+                MessageBox.Show(" Please start Teminal  as Run as Administrator");
+                return;
               
 
             }
             }
-            if (preset == "NOW")
+            else  if (preset == "NOW")
             {
                 try
                 {
@@ -601,7 +602,7 @@ namespace AmiBrokerPlugin
                 }
                 if (flag == 1)
                 {
-                   MessageBox.Show("Some required fileds are missing in market watch please add that fileds  ");
+                   MessageBox.Show("Trading symbol or Exchange column is missing \n Trading Symbol must be first column ");
                    return;
                 }
 
@@ -736,6 +737,24 @@ namespace AmiBrokerPlugin
           
             ///////////////// save config
 
+
+            save();
+
+
+            if(txtTargetFolder.Text=="")
+            {
+                MessageBox.Show("Please select download path ");
+                return;
+            }
+            getsymbol();
+             
+
+        }
+
+        //Add symbol into amibroker 
+
+        public void save()
+        {
             config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
 
@@ -824,22 +843,7 @@ namespace AmiBrokerPlugin
             ConfigurationManager.RefreshSection("appSettings");
 
             //////////
-
-
-
-            if(txtTargetFolder.Text=="")
-            {
-                MessageBox.Show("Please select download path ");
-                return;
-            }
-            getsymbol();
-             
-
         }
-
-        //Add symbol into amibroker 
-      
-
         private void preset_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(preset.SelectedItem=="NOW")
@@ -946,6 +950,7 @@ namespace AmiBrokerPlugin
 
         private void ShubhaPlugin_FormClosed(object sender, FormClosedEventArgs e)
         {
+            save();
             this.Close();
         }
 
@@ -958,6 +963,17 @@ namespace AmiBrokerPlugin
             {
                 dataGridView2.Rows.RemoveAt(item.Index);
             }
+        }
+
+        private void txtTargetFolder_TextChanged(object sender, EventArgs e)
+        {
+            config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            config.AppSettings.Settings.Remove("txtTargetFolderforami");
+
+            config.AppSettings.Settings.Add("txtTargetFolderforami", txtTargetFolder.Text.ToString());
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
         }
 
       

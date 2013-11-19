@@ -232,7 +232,6 @@ namespace AmiBrokerPlugin
                 using (var reader = new StreamReader(chktmp+"\\" + wordsdata1[1] + ".csv"))
                 {
                     string line = null;
-
                    while ((line = reader.ReadLine()) != null)
                     {
                         string[] wordsdata = line.Split(',');

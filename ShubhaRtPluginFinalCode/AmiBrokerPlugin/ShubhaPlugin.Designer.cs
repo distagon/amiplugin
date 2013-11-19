@@ -248,6 +248,7 @@
             this.txtTargetFolder.Size = new System.Drawing.Size(359, 21);
             this.txtTargetFolder.TabIndex = 7;
             this.txtTargetFolder.Text = "C:\\myshubhalabha\\amibokerplugindata";
+            this.txtTargetFolder.TextChanged += new System.EventHandler(this.txtTargetFolder_TextChanged);
             // 
             // tabPage2
             // 
